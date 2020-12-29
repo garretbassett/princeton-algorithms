@@ -1,13 +1,14 @@
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Percolation {
 
     private int size;
     int[][] grid;
     private WeightedQuickUnionUF wqu;
-    int openSites;
+    private int openSites;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -32,11 +33,21 @@ public class Percolation {
         // remember to add check out of bounds
 
         if (!isOpen(row, col)) {
+            System.out.println("NOT OPEN");
             grid[row - 1][col - 1] = 1;  // by convention, grid is 1-indexed, not zero
-            if (col > 1 && isOpen(row, col - 1)) wqu.union(convertCoordinates(row, col), convertCoordinates(row, col - 1));
-            if (col < size && isOpen(row, col + 1)) wqu.union(convertCoordinates(row, col), convertCoordinates(row, col + 1));
-            if (row > 1 && isOpen(row - 1, col)) wqu.union(convertCoordinates(row, col), convertCoordinates(row - 1, col));
-            if (row < size && isOpen(row + 1, col)) wqu.union(convertCoordinates(row, col), convertCoordinates(row + 1, col));
+            openSites++;
+            if (col > 1) {
+                if (isOpen(row, col - 1)) wqu.union(convertCoordinates(row, col), convertCoordinates(row, col - 1));
+            }
+            if (col < size - 1) {
+                if (isOpen(row, col + 1)) wqu.union(convertCoordinates(row, col), convertCoordinates(row, col + 1));
+            }
+            if (row > 1) {
+                if (isOpen(row - 1, col)) wqu.union(convertCoordinates(row, col), convertCoordinates(row - 1, col));
+            }
+            if (row < size - 1) {
+                if (isOpen(row + 1, col)) wqu.union(convertCoordinates(row, col), convertCoordinates(row + 1, col));
+            }
         }
 
         // next, connect to all adjacent open cells
@@ -48,7 +59,7 @@ public class Percolation {
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
 
-        return (grid[row][col] == 1);
+        return (grid[row - 1][col - 1] == 1);
     }
 
     // is the site (row, col) full?
@@ -61,7 +72,9 @@ public class Percolation {
         //
 
         for (int i = 0; i < size; i++) {
-            if (wqu.find(i) == wqu.find(convertCoordinates(row, col))) return true;
+//            System.out.println(wqu.find(i));
+//            System.out.println(wqu.find(convertCoordinates(row, col)));
+            if (wqu.find(i) == wqu.find(convertCoordinates(row - 1, col - 1))) return true;
         }
         return false;
     }
@@ -76,7 +89,7 @@ public class Percolation {
     public boolean percolates() {
 
         for (int i = 0; i < size; i++) {
-            if (isFull(wqu.find(i), size)) return true;
+            if (isFull(size, wqu.find(i))) return true;
         }
 
         return false;
@@ -94,10 +107,70 @@ public class Percolation {
 
         Percolation perc = new Percolation(10);
 
-        System.out.println("***** BEFORE *****\nPERCOLATES? " + perc.percolates() + "\nOPEN SITES: " + perc.numberOfOpenSites() + "\n\n");
+//        System.out.println(perc.grid[1][1]);
+//        System.out.println(perc.grid[9][5]);
+
+        for (int i = 0; i <= perc.size * perc.size - 1; i++) {
+            System.out.print(perc.wqu.find(i));
+            System.out.print("\t");
+            if (i % perc.size == 9) System.out.println();
+        }
+
+        System.out.println();
 
         for (int i = 0; i < perc.size; i++) {
-            perc.grid[i][5] = 1;
+            for (int j = 0; j < perc.size; j++) {
+                System.out.print(perc.grid[i][j]);
+                System.out.print("\t");
+            }
+            System.out.println();
+        }
+
+        System.out.println("***** BEFORE *****\nPERCOLATES? " + perc.percolates() + "\nOPEN SITES: " + perc.numberOfOpenSites() + "\n\n");
+
+        // TEST 1
+
+        for (int i = 1; i <= perc.size; i++) {
+            System.out.println("i: " + i);
+            perc.open(i, 5);
+        }
+
+        // TEST 2
+
+//        int column = 1;
+//
+//        for (int i = 1; i <= perc.size; i++) {
+//            Random rand = new Random();
+//            double randInt = Math.floor(rand.nextInt());
+//            column += randInt;
+//            System.out.println("RAND INT: " + randInt);
+//            perc.open(i, (int) (i + randInt));
+//        }
+//
+//        column = 0;
+//
+//        for (int i = 1; i <= perc.size; i++) {
+//            Random rand = new Random();
+//            double randInt = Math.floor(rand.nextInt());
+//            column += randInt;
+//            System.out.println("RAND INT: " + randInt);
+//            perc.open(i, (int) (i + randInt));
+//        }
+
+        for (int i = 0; i <= perc.size * perc.size - 1; i++) {
+            System.out.print(perc.wqu.find(i));
+            System.out.print("\t");
+            if (i % perc.size == 9) System.out.println();
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < perc.size; i++) {
+            for (int j = 0; j < perc.size; j++) {
+                System.out.print(perc.grid[i][j]);
+                System.out.print("\t");
+            }
+            System.out.println();
         }
 
         System.out.println("***** AFTER *****\nPERCOLATES? " + perc.percolates() + "\nOPEN SITES: " + perc.numberOfOpenSites() + "\n\n");
