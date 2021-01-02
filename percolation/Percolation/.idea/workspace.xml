@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64af98e5-6ebb-463b-9fb1-5f0c58a4c3ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/PercolationStats.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Percolation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Percolation.java" afterDir="false" />
-    </list>
+    <list default="true" id="64af98e5-6ebb-463b-9fb1-5f0c58a4c3ce" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +38,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PercolationStats">
+  <component name="RunManager" selected="Application.Percolation">
     <configuration name="Percolation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Percolation" />
       <module name="Percolation" />
@@ -59,8 +55,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PercolationStats" />
         <item itemvalue="Application.Percolation" />
+        <item itemvalue="Application.PercolationStats" />
       </list>
     </recent_temporary>
   </component>
@@ -94,22 +90,22 @@
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
     <state x="466" y="202" key="#Project_Structure/53.23.1627.1027@53.23.1627.1027" timestamp="1609202459488" />
-    <state width="1585" height="280" key="GridCell.Tab.0.bottom" timestamp="1609562614844">
+    <state width="1585" height="280" key="GridCell.Tab.0.bottom" timestamp="1609564480871">
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
-    <state width="1585" height="280" key="GridCell.Tab.0.bottom/53.23.1627.1027@53.23.1627.1027" timestamp="1609562614844" />
-    <state width="1585" height="280" key="GridCell.Tab.0.center" timestamp="1609562614843">
+    <state width="1585" height="280" key="GridCell.Tab.0.bottom/53.23.1627.1027@53.23.1627.1027" timestamp="1609564480871" />
+    <state width="1585" height="280" key="GridCell.Tab.0.center" timestamp="1609564480870">
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
-    <state width="1585" height="280" key="GridCell.Tab.0.center/53.23.1627.1027@53.23.1627.1027" timestamp="1609562614843" />
-    <state width="1585" height="280" key="GridCell.Tab.0.left" timestamp="1609562614843">
+    <state width="1585" height="280" key="GridCell.Tab.0.center/53.23.1627.1027@53.23.1627.1027" timestamp="1609564480870" />
+    <state width="1585" height="280" key="GridCell.Tab.0.left" timestamp="1609564480870">
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
-    <state width="1585" height="280" key="GridCell.Tab.0.left/53.23.1627.1027@53.23.1627.1027" timestamp="1609562614843" />
-    <state width="1585" height="280" key="GridCell.Tab.0.right" timestamp="1609562614843">
+    <state width="1585" height="280" key="GridCell.Tab.0.left/53.23.1627.1027@53.23.1627.1027" timestamp="1609564480870" />
+    <state width="1585" height="280" key="GridCell.Tab.0.right" timestamp="1609564480871">
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
-    <state width="1585" height="280" key="GridCell.Tab.0.right/53.23.1627.1027@53.23.1627.1027" timestamp="1609562614843" />
+    <state width="1585" height="280" key="GridCell.Tab.0.right/53.23.1627.1027@53.23.1627.1027" timestamp="1609564480871" />
     <state x="354" y="118" key="SettingsEditor" timestamp="1609208059536">
       <screen x="53" y="23" width="1627" height="1027" />
     </state>
