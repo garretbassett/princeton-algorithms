@@ -33,7 +33,7 @@ public class Percolation {
         // remember to add check out of bounds
 
         if (!isOpen(row, col)) {
-            System.out.println("NOT OPEN");
+//            System.out.println(row + ", " + col + " NOT OPEN");
             grid[row - 1][col - 1] = 1;  // by convention, grid is 1-indexed, not zero
             openSites++;
             if (col > 1) {
@@ -88,7 +88,8 @@ public class Percolation {
     // does the system percolate?
     public boolean percolates() {
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 1; i <= size; i++) {
+//            System.out.println("SIZE: " + size + ", WQU: " + wqu.find(i));
             if (isFull(size, wqu.find(i))) return true;
         }
 
@@ -98,8 +99,9 @@ public class Percolation {
     // converts 2D coordinates to UF index
 
     public int convertCoordinates(int row, int col) {
-
-        return (row - 1) * size + col;
+//        System.out.println("CONVERTING: " + row + ", " + col);
+//        System.out.println("RESULT: " + ((row - 1) * size + col));
+        return (row - 1) * size + col - 1;
     }
 
     // test client
@@ -130,32 +132,47 @@ public class Percolation {
 
         // TEST 1
 
-        for (int i = 1; i <= perc.size; i++) {
-            System.out.println("i: " + i);
-            perc.open(i, 5);
-        }
+//        for (int i = 1; i <= perc.size; i++) {
+//            System.out.println("i: " + i);
+//            perc.open(i, 5);
+//        }
+
+        //////////
 
         // TEST 2
 
 //        int column = 1;
 //
 //        for (int i = 1; i <= perc.size; i++) {
-//            Random rand = new Random();
-//            double randInt = Math.floor(rand.nextInt());
-//            column += randInt;
-//            System.out.println("RAND INT: " + randInt);
-//            perc.open(i, (int) (i + randInt));
+//            perc.open(i, column);
+//            column ++;
+//            if (column <= 10) perc.open(i, column);
 //        }
-//
-//        column = 0;
-//
-//        for (int i = 1; i <= perc.size; i++) {
-//            Random rand = new Random();
-//            double randInt = Math.floor(rand.nextInt());
-//            column += randInt;
-//            System.out.println("RAND INT: " + randInt);
-//            perc.open(i, (int) (i + randInt));
-//        }
+
+        //////////
+
+        // TEST 3
+
+        perc.open(1, 3);
+        perc.open(2, 3);
+        perc.open(2, 4);
+        perc.open(2, 5);
+//        perc.open(3, 4);
+        perc.open(4, 4);
+        perc.open(4, 3);
+        perc.open(4, 2);
+        perc.open(5, 2);
+        perc.open(6, 2);
+        perc.open(6, 3);
+        perc.open(7, 3);
+        perc.open(7, 4);
+        perc.open(7, 5);
+        perc.open(8, 5);
+        perc.open(8, 6);
+        perc.open(9, 6);
+        perc.open(9, 5);
+        perc.open(10, 5);
+
 
         for (int i = 0; i <= perc.size * perc.size - 1; i++) {
             System.out.print(perc.wqu.find(i));
