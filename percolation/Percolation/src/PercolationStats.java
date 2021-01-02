@@ -1,9 +1,9 @@
-import java.util.Random;
+import edu.princeton.cs.algs4.StdRandom;
 
 public class PercolationStats {
 
-    private int gridSize;
-    private int numTrials;
+    private final int gridSize;
+    private final int numTrials;
     private double[] thresholds;
 
     // perform independent trials on an n-by-n grid
@@ -17,7 +17,7 @@ public class PercolationStats {
 
     }
 
-    public void runSim() {
+    private void runSim() {
 
         for (int i = 0; i < numTrials; i++) {
             System.out.println("SIM #" + (i + 1));
@@ -25,16 +25,15 @@ public class PercolationStats {
             Percolation grid = new Percolation(gridSize);
             int iterationCount = 0;
 
-            while(!grid.percolates()) {
+            while (!grid.percolates()) {
 //                grid.printGrid();
 //                System.out.println("\n==========\n");
-                Random random = new Random();
-                int row = (int) Math.floor(random.nextInt(gridSize) + 1);
-                int col = (int) Math.floor(random.nextInt(gridSize) + 1);
+                int row = (int) Math.floor(StdRandom.uniform(10) + 1);
+                int col = (int) Math.floor(StdRandom.uniform(10) + 1);
 //                System.out.println("ROW: " + row + ", COL: " + col);
                 if (!grid.isOpen(row, col)) {
                     grid.open(row, col);
-                    iterationCount ++;
+                    iterationCount++;
                 }
             }
 

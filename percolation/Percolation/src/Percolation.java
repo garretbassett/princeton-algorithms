@@ -1,13 +1,11 @@
 
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-import java.util.Arrays;
-import java.util.Random;
 
 public class Percolation {
 
-    private int size;
-    int[][] grid;
-    private WeightedQuickUnionUF wqu;
+    private final int size;
+    private int[][] grid;
+    private final WeightedQuickUnionUF wqu;
     private int openSites;
 
     // creates n-by-n grid, with all sites initially blocked
@@ -100,13 +98,13 @@ public class Percolation {
 
     // converts 2D coordinates to UF index
 
-    public int convertCoordinates(int row, int col) {
+    private int convertCoordinates(int row, int col) {
 //        System.out.println("CONVERTING: " + row + ", " + col);
 //        System.out.println("RESULT: " + ((row - 1) * size + col));
         return (row - 1) * size + col - 1;
     }
 
-    public void printGrid() {
+    private void printGrid() {
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
