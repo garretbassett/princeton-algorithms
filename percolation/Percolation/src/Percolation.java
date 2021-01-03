@@ -4,7 +4,7 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 public class Percolation {
 
     private final int size;
-    private int[][] grid;
+    private boolean[][] grid;
     private final WeightedQuickUnionUF wqu;
     private int openSites;
 
@@ -12,14 +12,14 @@ public class Percolation {
     public Percolation(int n) {
 
         this.size = n;
-        grid = new int[n][n];
+        grid = new boolean[n][n];
 //        Arrays.fill(grid, 0);
         wqu = new WeightedQuickUnionUF(size * size);
         openSites = 0;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                grid[i][j] = 0;
+                grid[i][j] = false;
             }
         }
 
@@ -32,7 +32,7 @@ public class Percolation {
 
         if (!isOpen(row, col)) {
 //            System.out.println(row + ", " + col + " NOT OPEN");
-            grid[row - 1][col - 1] = 1;  // by convention, grid is 1-indexed, not zero
+            grid[row - 1][col - 1] = true;  // by convention, grid is 1-indexed, not zero
             openSites++;
             if (col > 1) {
                 if (isOpen(row, col - 1)) wqu.union(convertCoordinates(row, col), convertCoordinates(row, col - 1));
@@ -57,7 +57,7 @@ public class Percolation {
     // is the site (row, col) open?
     public boolean isOpen(int row, int col) {
 
-        return (grid[row - 1][col - 1] == 1);
+        return (grid[row - 1][col - 1]);
     }
 
     // is the site (row, col) full?
@@ -152,37 +152,38 @@ public class Percolation {
 
         // TEST 2
 
-//        int column = 1;
-//
-//        for (int i = 1; i <= perc.size; i++) {
-//            perc.open(i, column);
-//            column ++;
-//            if (column <= 10) perc.open(i, column);
-//        }
+        int column = 1;
+
+        for (int i = 1; i <= perc.size; i++) {
+            perc.open(i, column);
+            column++;
+            if (column <= 10) perc.open(i, column);
+        }
 
         //////////
 
         // TEST 3
 
-        perc.open(1, 3);
-        perc.open(2, 3);
-        perc.open(2, 4);
-        perc.open(2, 5);
-//        perc.open(3, 4);
-        perc.open(4, 4);
-        perc.open(4, 3);
-        perc.open(4, 2);
-        perc.open(5, 2);
-        perc.open(6, 2);
-        perc.open(6, 3);
-        perc.open(7, 3);
-        perc.open(7, 4);
-        perc.open(7, 5);
-        perc.open(8, 5);
-        perc.open(8, 6);
-        perc.open(9, 6);
-        perc.open(9, 5);
-        perc.open(10, 5);
+//        perc.open(1, 3);
+//        perc.open(2, 3);
+//        perc.open(2, 4);
+//        perc.open(2, 5);
+//        perc.open(4, 4);
+//        perc.open(4, 3);
+//        perc.open(4, 2);
+//        perc.open(5, 2);
+//        perc.open(6, 2);
+//        perc.open(6, 3);
+//        perc.open(7, 3);
+//        perc.open(7, 4);
+//        perc.open(7, 5);
+//        perc.open(8, 5);
+//        perc.open(8, 6);
+//        perc.open(9, 6);
+//        perc.open(9, 5);
+//        perc.open(10, 5);
+
+        //////////
 
 
         for (int i = 0; i <= perc.size * perc.size - 1; i++) {

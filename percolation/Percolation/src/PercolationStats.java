@@ -1,10 +1,12 @@
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
 
     private final int gridSize;
     private final int numTrials;
     private double[] thresholds;
+    private static final double confidence95 = 1.96;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
@@ -28,8 +30,8 @@ public class PercolationStats {
             while (!grid.percolates()) {
 //                grid.printGrid();
 //                System.out.println("\n==========\n");
-                int row = (int) Math.floor(StdRandom.uniform(10) + 1);
-                int col = (int) Math.floor(StdRandom.uniform(10) + 1);
+                int row = (int) Math.floor(StdRandom.uniform(gridSize) + 1);
+                int col = (int) Math.floor(StdRandom.uniform(gridSize) + 1);
 //                System.out.println("ROW: " + row + ", COL: " + col);
                 if (!grid.isOpen(row, col)) {
                     grid.open(row, col);
@@ -45,38 +47,42 @@ public class PercolationStats {
     // sample mean of percolation threshold
     public double mean() {
 
-        double thresholdSum = 0;
+//        double thresholdSum = 0;
+//
+//        for (double threshold : thresholds) {
+//            thresholdSum += threshold;
+//        }
+//
+//        return thresholdSum / numTrials;
 
-        for (double threshold : thresholds) {
-            thresholdSum += threshold;
-        }
-
-        return thresholdSum / numTrials;
+        return StdStats.mean(thresholds);
     }
 
     // sample standard deviation of percolation threshold
     public double stddev() {
 
-        double stdDev = 0;
+//        double stdDev = 0;
+//
+//        for (double threshold : thresholds) {
+//            stdDev += ((threshold - mean()) * (threshold - mean()));
+//
+//        }
+//        stdDev /= numTrials;
+//        return Math.sqrt(stdDev);
 
-        for (double threshold : thresholds) {
-            stdDev += ((threshold - mean()) * (threshold - mean()));
-
-        }
-        stdDev /= numTrials;
-        return Math.sqrt(stdDev);
+        return StdStats.stddev(thresholds);
     }
 
     // low endpoint of 95% confidence interval
     public double confidenceLo() {
 
-        return (mean() - (1.96 * stddev() / Math.sqrt(numTrials)));
+        return (mean() - (confidence95 * stddev() / Math.sqrt(numTrials)));
     }
 
     // high endpoint of 95% confidence interval
     public double confidenceHi() {
 
-        return (mean() + (1.96 * stddev() / Math.sqrt(numTrials)));
+        return (mean() + (confidence95 * stddev() / Math.sqrt(numTrials)));
     }
 
     // test client (see below)
